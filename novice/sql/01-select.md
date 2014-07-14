@@ -7,8 +7,8 @@ root: ../..
 
 
 <div>
-<p>For this lesson, we're going to use the library of the SQL Learners Academy as an example. Since the Academy is much more concerned about teaching SQL than proper cataloguing, its library catalogue is quite rudimentary. The catalogue is based on a few tables that are in relation to each other, enough to get the concept of relational databases across, and run some simple quries!</p>
-<p>More importantly, the raw database is always <a href="swclib.db">available for download</a> so that students can learn to tinker SQL. Unhappy librarians, maybe, but happy coders!</p>
+<p>For this lesson, we're going to use the library of the <em>SQL Learners Academy</em> as an example. Since the Academy is much more concerned about teaching SQL than proper cataloguing, its library catalogue is quite rudimentary. The catalogue is based on a few tables that are in relation to each other, enough to get the concept of relational databases across, and run some simple quries!</p>
+<p>More importantly, the raw database is always <a href="swclib.db">available for download</a> (in SQLite format) so that students can learn to tinker SQL.</p>
 </div>
 
 
@@ -31,7 +31,7 @@ root: ../..
 <p>Every database manager—Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access, and SQLite—stores data in a different way, so a database created with one cannot be used directly by another. However, every database manager can import and export data in a variety of formats, so it <em>is</em> possible to move information from one to another.</p>
 </blockquote>
 <p>Queries are written in a language called <a href="../../gloss.html#sql">SQL</a>, which stands for &quot;Structured Query Language&quot;. SQL provides hundreds of different ways to analyze and recombine data; we will only look at a handful, but that handful accounts for most of what scientists do.</p>
-<p>The tables below show the database we will use in our examples:</p>
+<p>The tables below show the database we will use in our library example. Students using SQLite can <a href="swclib.db">download</a> the database to try the queries along.</p>
 </div>
 
 
@@ -39,50 +39,64 @@ root: ../..
 <table>
 <tr>
 <td valign="top">
-<p><strong>Person</strong>: people who took readings.</p>
+<p><strong>Works</strong>: bibliographical database for books available in the library</p>
+
 <table>
-  <tr> <th>
-ident
-</th> <th>
-personal
-</th> <th>
-family
-</th> </tr>
-  <tr> <td>
-dyer
-</td> <td>
-William
-</td> <td>
-Dyer
-</td> </tr>
-  <tr> <td>
-pb
-</td> <td>
-Frank
-</td> <td>
-Pabodie
-</td> </tr>
-  <tr> <td>
-lake
-</td> <td>
-Anderson
-</td> <td>
-Lake
-</td> </tr>
-  <tr> <td>
-roe
-</td> <td>
-Valentina
-</td> <td>
-Roerich
-</td> </tr>
-  <tr> <td>
-danforth
-</td> <td>
-Frank
-</td> <td>
-Danforth
-</td> </tr>
+  <tr><th>Work_ID</th> <th>Title</th> <th>ISBN</th> <th>Date</th> <th>Place</th> <th>Publisher</th> <th>Edition</th> <th>Pages</th></tr>
+<TR><TD>1</TD>
+<TD>SQL in a nutshell</TD>
+<TD>9780596518844</TD>
+<TD>2009</TD>
+<TD>Sebastopol</TD>
+<TD>O&#39;Reilly</TD>
+<TD>3rd ed.</TD>
+<TD>578</TD>
+</TR>
+<TR><TD>2</TD>
+<TD>SQL for dummies</TD>
+<TD>9781118607961</TD>
+<TD>2013</TD>
+<TD>Hoboken</TD>
+<TD>Wiley</TD>
+<TD>8th ed.</TD>
+<TD></TD>
+</TR>
+<TR><TD>3</TD>
+<TD>PHP &amp; MySQL</TD>
+<TD>9781449325572</TD>
+<TD>2013</TD>
+<TD>Sebastopol</TD>
+<TD>O&#39;Reilly</TD>
+<TD>2nd ed.</TD>
+<TD>532</TD>
+</TR>
+<TR><TD>4</TD>
+<TD>Using SQLite</TD>
+<TD>9780596521189</TD>
+<TD>2010</TD>
+<TD>Sebastopol</TD>
+<TD>O&#39;Reilly</TD>
+<TD>1st ed.</TD>
+<TD>503</TD>
+</TR>
+<TR><TD>5</TD>
+<TD>Geek sublime</TD>
+<TD>9780571310302</TD>
+<TD>2014</TD>
+<TD>London</TD>
+<TD>Faber &amp; Faber</TD>
+<TD></TD>
+<TD>258</TD>
+</TR>
+<TR><TD>6</TD>
+<TD>Capital in the 21st century</TD>
+<TD>9780674430006</TD>
+<TD>2014</TD>
+<TD>Cambridge</TD>
+<TD>Belknap Press</TD>
+<TD></TD>
+<TD>685</TD>
+</TR>
 </table>
 
 <p><strong>Site</strong>: locations where readings were taken.</p>
