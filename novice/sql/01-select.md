@@ -195,7 +195,7 @@ root: ../..
 </div>
 
 <div>
-<p>Notice that some entries are shown in red because they don't contain any actual data: we'll return to these missing values <a href="#s:null">later</a>. For now, let's write an SQL query that displays the names of all authors present in the catalogue. We do this using the SQL command <code>SELECT</code>, giving it the names of the columns we want and the table we want them from. Our query and its output look like this:</p>
+<p>Notice that some entries are shown in red because they don't contain any actual data: we'll return to these missing values later. For now, let's write an SQL query that displays the names of all authors present in the catalogue. We do this using the SQL command <code>SELECT</code>, giving it the names of the columns we want and the table we want them from. Our query and its output look like this:</p>
 </div>
 
 
@@ -288,7 +288,7 @@ SELECT Name, Surname FROM Authors;</pre>
 
 
 <div>
-<p>The semi-colon at the end of the query tells the database manager that the query is complete and ready to run. We have written our commands in UPPER CASE, but the column and the table name in Title Case, but we don't have to: as the example below shows, SQL is <a href="../../gloss.html#case-insensitive">case insensitive</a>.</p>
+<p>The semi-colon at the end of the query tells the database manager that the query is complete and ready to run. We have written our commands in UPPER CASE, and the column and the table name in Title Case, but we don't have to: as the example below shows, SQL is <a href="../../gloss.html#case-insensitive">case insensitive</a>.</p>
 </div>
 
 
@@ -446,6 +446,7 @@ SELECT * FROM Authors LIMIT 5;</pre>
 <h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
 <li><p>Write a query that selects only titles from the <code>Works</code> table.</p></li>
+<li><p>Write a query that selects the first 10 barcodes and status from the <code>Items</code> table.</p></li>
 <li><p>Many people format queries as:</p>
 <pre><code>SELECT name, surname FROM authors;</code></pre>
 <p>or as:</p>
