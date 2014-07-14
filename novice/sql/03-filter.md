@@ -16,7 +16,7 @@ root: ../..
 
 
 <div>
-<p>One of the most powerful features of a database is the ability to <a href="../../gloss.html#filter">filter</a> data, i.e., to select only those records that match certain criteria. For example, suppose we want to see when a particular site was visited. We can select these records from the <code>Visited</code> table by using a <code>where</code> clause in our query:</p>
+<p>One of the most powerful features of a database is the ability to <a href="../../gloss.html#filter">filter</a> data, i.e., to select only those records that match certain criteria. For example, suppose we want to list all the books in the catalogue that have been published by Wiley. We can select these records from the <code>Works</code> table by using a <code>WHERE</code> clause in our query:</p>
 </div>
 
 
@@ -26,61 +26,167 @@ root: ../..
 
 
 <div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where site=&#39;DR-1&#39;;</pre>
+<pre>%%sqlite swclib.db
+SELECT * FROM Works WHERE Publisher="Wiley";</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>619</td><td>DR-1</td><td>1927-02-08</td></tr>
-<tr><td>622</td><td>DR-1</td><td>1927-02-10</td></tr>
-<tr><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
+	<TR><TD>2</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9781118607961</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>8th ed.</TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>8</TD>
+	<TD>Discovering SQL</TD>
+	<TD>9781118002674</TD>
+	<TD>2011</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>400</TD>
+	</TR>
+	<TR><TD>11</TD>
+	<TD>SQL bible</TD>
+	<TD>9780470229064</TD>
+	<TD>2008</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>857</TD>
+	</TR>
+	<TR><TD>13</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9780470557419</TD>
+	<TD>2010</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>7th ed.</TD>
+	<TD>440</TD>
+	</TR>
+	<TR><TD>15</TD>
+	<TD>Beginning SQL</TD>
+	<TD>0764577328</TD>
+	<TD>2005</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>501</TD>
+	</TR>
+	<TR><TD>17</TD>
+	<TD>SQL all-in-one</TD>
+	<TD>9780470929964</TD>
+	<TD>2011</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>708</TD>
+	</TR>
+	<TR><TD>18</TD>
+	<TD>Access 2013 all-in-one</TD>
+	<TD>9781118510551</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>760</TD>
+	</TR>
 </table></pre>
 </div>
 
 
 <div>
-<p>The database manager executes this query in two stages. First, it checks at each row in the <code>Visited</code> table to see which ones satisfy the <code>where</code>. It then uses the column names following the <code>select</code> keyword to determine what columns to display.</p>
+<p>The database manager executes this query in two stages. First, it checks at each row in the <code>Works</code> table to see which ones satisfy the <code>WHERE</code>. It then uses the column names following the <code>SELECT</code> keyword to determine what columns to display.</p>
 </div>
 
 
 <div>
-<p>This processing order means that we can filter records using <code>where</code> based on values in columns that aren't then displayed:</p>
+<p>This processing order means that we can filter records using <code>WHERE</code> based on values in columns that aren't then displayed:</p>
 </div>
 
 
 <div class="in">
 <pre>%%sqlite survey.db
-select ident from Visited where site=&#39;DR-1&#39;;</pre>
+SELECT Title FROM Works WHERE Publisher="Wiley";</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>619</td></tr>
-<tr><td>622</td></tr>
-<tr><td>844</td></tr>
+	<TR><TD>SQL for dummies</TD>
+	</TR>
+	<TR><TD>Discovering SQL</TD>
+	</TR>
+	<TR><TD>SQL bible</TD>
+	</TR>
+	<TR><TD>SQL for dummies</TD>
+	</TR>
+	<TR><TD>Beginning SQL</TD>
+	</TR>
+	<TR><TD>SQL all-in-one</TD>
+	</TR>
+	<TR><TD>Access 2013 all-in-one</TD>
+	</TR>
 </table></pre>
 </div>
 
 
-<div>
+<!--><div>
 <p><img src="img/sql-filter.svg" alt="SQL Filtering in Action" /></p>
-</div>
+</div>-->
 
 
 <div>
-<p>We can use many other Boolean operators to filter our data. For example, we can ask for all information from the DR-1 site collected since 1930:</p>
+<p>We can use many other Boolean operators to filter our data. For example, we can display only titles that have been published by Wiley in 2012 or later:</p>
 </div>
 
 
 <div class="in">
-<pre>%%sqlite survey.db
-select * from Visited where (site=&#39;DR-1&#39;) and (dated&gt;=&#39;1930-00-00&#39;);</pre>
+<pre>%%sqlite swclib.db
+SELECT * FROM Works WHERE (Publisher='Wiley') AND (Date>='2011');</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>844</td><td>DR-1</td><td>1932-03-22</td></tr>
+	<TR><TD>2</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9781118607961</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>8th ed.</TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>8</TD>
+	<TD>Discovering SQL</TD>
+	<TD>9781118002674</TD>
+	<TD>2011</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>400</TD>
+	</TR>
+	<TR><TD>17</TD>
+	<TD>SQL all-in-one</TD>
+	<TD>9780470929964</TD>
+	<TD>2011</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>708</TD>
+	</TR>
+	<TR><TD>18</TD>
+	<TD>Access 2013 all-in-one</TD>
+	<TD>9781118510551</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>760</TD>
+	</TR>
 </table></pre>
 </div>
 
@@ -88,82 +194,361 @@ select * from Visited where (site=&#39;DR-1&#39;) and (dated&gt;=&#39;1930-00-00
 <div>
 <p>(The parentheses around the individual tests aren't strictly required, but they help make the query easier to read.)</p>
 <blockquote>
-<p>Most database managers have a special data type for dates. In fact, many have two: one for dates, such as &quot;May 31, 1971&quot;, and one for durations, such as &quot;31 days&quot;. SQLite doesn't: instead, it stores dates as either text (in the ISO-8601 standard format &quot;YYYY-MM-DD HH:MM:SS.SSSS&quot;), real numbers (the number of days since November 24, 4714 BCE), or integers (the number of seconds since midnight, January 1, 1970). If this sounds complicated, it is, but not nearly as complicated as figuring out <a href="http://en.wikipedia.org/wiki/Swedish_calendar">historical dates in Sweden</a>.</p>
+<p>Most database managers have a special data type for dates. In fact, many have two: one for dates, such as &quot;May 31, 1971&quot;, and one for durations, such as &quot;31 days&quot;. SQLite doesn't: instead, it stores dates as either text (in the ISO-8601 standard format &quot;YYYY-MM-DD HH:MM:SS.SSSS&quot;), real numbers (the number of days since November 24, 4714 BCE), or integers (the number of seconds since midnight, January 1, 1970). If this sounds complicated, it is, but not nearly as complicated as figuring out <a href="http://en.wikipedia.org/wiki/Swedish_calendar">historical dates in Sweden</a>. In our library example, we make this even easier by storing only years (as integers) instead of full dates.</p>
 </blockquote>
 </div>
 
 
 <div>
-<p>If we want to find out what measurements were taken by either Lake or Roerich, we can combine the tests on their names using <code>or</code>:</p>
+<p>If we want to list all books published either by Wiley or O'Reilly, we can combine the query using <code>OR</code>. Note in passing how the apostrophe in the name O'Reilly is escaped:</p>
 </div>
 
 
 <div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where person=&#39;lake&#39; or person=&#39;roe&#39;;</pre>
+<pre>%%sqlite swclib.db
+SELECT * FROM Works WHERE Publisher='Wiley' OR Publisher='O''Reilly';</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>734</td><td>lake</td><td>sal</td><td>0.05</td></tr>
-<tr><td>751</td><td>lake</td><td>sal</td><td>0.1</td></tr>
-<tr><td>752</td><td>lake</td><td>rad</td><td>2.19</td></tr>
-<tr><td>752</td><td>lake</td><td>sal</td><td>0.09</td></tr>
-<tr><td>752</td><td>lake</td><td>temp</td><td>-16.0</td></tr>
-<tr><td>752</td><td>roe</td><td>sal</td><td>41.6</td></tr>
-<tr><td>837</td><td>lake</td><td>rad</td><td>1.46</td></tr>
-<tr><td>837</td><td>lake</td><td>sal</td><td>0.21</td></tr>
-<tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
-<tr><td>844</td><td>roe</td><td>rad</td><td>11.25</td></tr>
+	<TR><TD>1</TD>
+	<TD>SQL in a nutshell</TD>
+	<TD>9780596518844</TD>
+	<TD>2009</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>3rd ed.</TD>
+	<TD>578</TD>
+	</TR>
+	<TR><TD>2</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9781118607961</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>8th ed.</TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>3</TD>
+	<TD>PHP &amp; MySQL</TD>
+	<TD>9781449325572</TD>
+	<TD>2013</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>2nd ed.</TD>
+	<TD>532</TD>
+	</TR>
+	<TR><TD>4</TD>
+	<TD>Using SQLite</TD>
+	<TD>9780596521189</TD>
+	<TD>2010</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>1st ed.</TD>
+	<TD>503</TD>
+	</TR>
+	<TR><TD>8</TD>
+	<TD>Discovering SQL</TD>
+	<TD>9781118002674</TD>
+	<TD>2011</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>400</TD>
+	</TR>
+	<TR><TD>11</TD>
+	<TD>SQL bible</TD>
+	<TD>9780470229064</TD>
+	<TD>2008</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>857</TD>
+	</TR>
+	<TR><TD>12</TD>
+	<TD>Learning SQL</TD>
+	<TD>9780596520830</TD>
+	<TD>2009</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>2nd ed.</TD>
+	<TD>320</TD>
+	</TR>
+	<TR><TD>13</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9780470557419</TD>
+	<TD>2010</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>7th ed.</TD>
+	<TD>440</TD>
+	</TR>
+	<TR><TD>15</TD>
+	<TD>Beginning SQL</TD>
+	<TD>0764577328</TD>
+	<TD>2005</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>501</TD>
+	</TR>
+	<TR><TD>17</TD>
+	<TD>SQL all-in-one</TD>
+	<TD>9780470929964</TD>
+	<TD>2011</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>708</TD>
+	</TR>
+	<TR><TD>18</TD>
+	<TD>Access 2013 all-in-one</TD>
+	<TD>9781118510551</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>760</TD>
+	</TR>
+	<TR><TD>19</TD>
+	<TD>SQL in a nutshell</TD>
+	<TD>0596004818</TD>
+	<TD>2004</TD>
+	<TD>Cambridge</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>2nd ed.</TD>
+	<TD>691</TD>
+	</TR>
+	<TR><TD>20</TD>
+	<TD>MySQL in a nutshell</TD>
+	<TD>0596007892</TD>
+	<TD>2005</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>1st ed.</TD>
+	<TD>321</TD>
+	</TR>
+
+</table></pre>
+</div>
+
+<div>
+<p>Alternatively, we can use <code>IN</code> to see if a value is in a specific set:</p>
+</div>
+
+
+<div class="in">
+<pre>%%sqlite swclib.db
+SELECT * FROM Works WHERE Publisher IN('Wiley','O''Reilly');</pre>
+</div>
+
+<div class="out">
+<pre><table>
+	<TR><TD>1</TD>
+	<TD>SQL in a nutshell</TD>
+	<TD>9780596518844</TD>
+	<TD>2009</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>3rd ed.</TD>
+	<TD>578</TD>
+	</TR>
+	<TR><TD>2</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9781118607961</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>8th ed.</TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>3</TD>
+	<TD>PHP &amp; MySQL</TD>
+	<TD>9781449325572</TD>
+	<TD>2013</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>2nd ed.</TD>
+	<TD>532</TD>
+	</TR>
+	<TR><TD>4</TD>
+	<TD>Using SQLite</TD>
+	<TD>9780596521189</TD>
+	<TD>2010</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>1st ed.</TD>
+	<TD>503</TD>
+	</TR>
+	<TR><TD>8</TD>
+	<TD>Discovering SQL</TD>
+	<TD>9781118002674</TD>
+	<TD>2011</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>400</TD>
+	</TR>
+	<TR><TD>11</TD>
+	<TD>SQL bible</TD>
+	<TD>9780470229064</TD>
+	<TD>2008</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>857</TD>
+	</TR>
+	<TR><TD>12</TD>
+	<TD>Learning SQL</TD>
+	<TD>9780596520830</TD>
+	<TD>2009</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>2nd ed.</TD>
+	<TD>320</TD>
+	</TR>
+	<TR><TD>13</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9780470557419</TD>
+	<TD>2010</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>7th ed.</TD>
+	<TD>440</TD>
+	</TR>
+	<TR><TD>15</TD>
+	<TD>Beginning SQL</TD>
+	<TD>0764577328</TD>
+	<TD>2005</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>501</TD>
+	</TR>
+	<TR><TD>17</TD>
+	<TD>SQL all-in-one</TD>
+	<TD>9780470929964</TD>
+	<TD>2011</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>708</TD>
+	</TR>
+	<TR><TD>18</TD>
+	<TD>Access 2013 all-in-one</TD>
+	<TD>9781118510551</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>760</TD>
+	</TR>
+	<TR><TD>19</TD>
+	<TD>SQL in a nutshell</TD>
+	<TD>0596004818</TD>
+	<TD>2004</TD>
+	<TD>Cambridge</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>2nd ed.</TD>
+	<TD>691</TD>
+	</TR>
+	<TR><TD>20</TD>
+	<TD>MySQL in a nutshell</TD>
+	<TD>0596007892</TD>
+	<TD>2005</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>1st ed.</TD>
+	<TD>321</TD>
+	</TR>
 </table></pre>
 </div>
 
 
 <div>
-<p>Alternatively, we can use <code>in</code> to see if a value is in a specific set:</p>
+<p>We can combine <code>AND</code> with <code>OR</code>, but we need to be careful about which operator is executed first. If we <em>don't</em> use parentheses, we get this:</p>
 </div>
 
 
 <div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where person in (&#39;lake&#39;, &#39;roe&#39;);</pre>
+<pre>%%sqlite swclib.db
+SELECT * FROM Works WHERE Publisher='Wiley' OR Publisher='O''Reilly' AND Date>=2012;</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>734</td><td>lake</td><td>sal</td><td>0.05</td></tr>
-<tr><td>751</td><td>lake</td><td>sal</td><td>0.1</td></tr>
-<tr><td>752</td><td>lake</td><td>rad</td><td>2.19</td></tr>
-<tr><td>752</td><td>lake</td><td>sal</td><td>0.09</td></tr>
-<tr><td>752</td><td>lake</td><td>temp</td><td>-16.0</td></tr>
-<tr><td>752</td><td>roe</td><td>sal</td><td>41.6</td></tr>
-<tr><td>837</td><td>lake</td><td>rad</td><td>1.46</td></tr>
-<tr><td>837</td><td>lake</td><td>sal</td><td>0.21</td></tr>
-<tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
-<tr><td>844</td><td>roe</td><td>rad</td><td>11.25</td></tr>
-</table></pre>
-</div>
-
-
-<div>
-<p>We can combine <code>and</code> with <code>or</code>, but we need to be careful about which operator is executed first. If we <em>don't</em> use parentheses, we get this:</p>
-</div>
-
-
-<div class="in">
-<pre>%%sqlite survey.db
-select * from Survey where quant=&#39;sal&#39; and person=&#39;lake&#39; or person=&#39;roe&#39;;</pre>
-</div>
-
-<div class="out">
-<pre><table>
-<tr><td>734</td><td>lake</td><td>sal</td><td>0.05</td></tr>
-<tr><td>751</td><td>lake</td><td>sal</td><td>0.1</td></tr>
-<tr><td>752</td><td>lake</td><td>sal</td><td>0.09</td></tr>
-<tr><td>752</td><td>roe</td><td>sal</td><td>41.6</td></tr>
-<tr><td>837</td><td>lake</td><td>sal</td><td>0.21</td></tr>
-<tr><td>837</td><td>roe</td><td>sal</td><td>22.5</td></tr>
-<tr><td>844</td><td>roe</td><td>rad</td><td>11.25</td></tr>
+	<TR><TD>2</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9781118607961</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>8th ed.</TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>3</TD>
+	<TD>PHP &amp; MySQL</TD>
+	<TD>9781449325572</TD>
+	<TD>2013</TD>
+	<TD>Sebastopol</TD>
+	<TD>O&#39;Reilly</TD>
+	<TD>2nd ed.</TD>
+	<TD>532</TD>
+	</TR>
+	<TR><TD>8</TD>
+	<TD>Discovering SQL</TD>
+	<TD>9781118002674</TD>
+	<TD>2011</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>400</TD>
+	</TR>
+	<TR><TD>11</TD>
+	<TD>SQL bible</TD>
+	<TD>9780470229064</TD>
+	<TD>2008</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>857</TD>
+	</TR>
+	<TR><TD>13</TD>
+	<TD>SQL for dummies</TD>
+	<TD>9780470557419</TD>
+	<TD>2010</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>7th ed.</TD>
+	<TD>440</TD>
+	</TR>
+	<TR><TD>15</TD>
+	<TD>Beginning SQL</TD>
+	<TD>0764577328</TD>
+	<TD>2005</TD>
+	<TD>Indianapolis</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>501</TD>
+	</TR>
+	<TR><TD>17</TD>
+	<TD>SQL all-in-one</TD>
+	<TD>9780470929964</TD>
+	<TD>2011</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD>2nd ed.</TD>
+	<TD>708</TD>
+	</TR>
+	<TR><TD>18</TD>
+	<TD>Access 2013 all-in-one</TD>
+	<TD>9781118510551</TD>
+	<TD>2013</TD>
+	<TD>Hoboken</TD>
+	<TD>Wiley</TD>
+	<TD></TD>
+	<TD>760</TD>
+	</TR>
 </table></pre>
 </div>
 

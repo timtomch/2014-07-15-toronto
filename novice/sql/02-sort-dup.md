@@ -16,7 +16,7 @@ root: ../..
 
 
 <div>
-<p>Data is often redundant, so queries often return redundant information. For example, say we were interested in listing all the publishers that are represented in our catalogue. If we select the <strong>Publisher</strong> from the <code>Works</code> table, we get this:</p>
+<p>Data is often redundant, so queries often return redundant information. For example, say we were interested in listing all the publishers that are represented in our catalogue. If we select the <code>Publisher</code> from the <code>Works</code> table, we get this:</p>
 </div>
 
 
@@ -165,7 +165,7 @@ SELECT DISTINCT Place, Publisher FROM Works;</pre>
 
 
 <div>
-<h4 id="challenges">Challenges</h4>
+<h4 id="challenges">Challenge</h4>
 <ol style="list-style-type: decimal">
 <li>Write a query that displays all the distinct years in which items were purchased for the library. Hint, look at the <strong>Aquired</strong> column in the <code>Items</code> table.</li>
 </ol>
@@ -179,7 +179,7 @@ SELECT DISTINCT Place, Publisher FROM Works;</pre>
 
 <div class="in">
 <pre>%%sqlite swclib.db
-	SELECT DISTINCT Publisher FROM Works ORDER BY Publisher;
+SELECT DISTINCT Publisher FROM Works ORDER BY Publisher;
 </pre>
 </div>
 

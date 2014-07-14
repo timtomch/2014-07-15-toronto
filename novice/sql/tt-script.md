@@ -21,4 +21,6 @@ root: ../..
 		<li>LIMIT statement</li>
 	</ul>
 	</li>
+<li>DISTINCT and ORDER BY</li>
+<li>WHERE clauses. Boolean operators. > AND OR.</li>
 </ul>
