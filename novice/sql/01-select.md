@@ -36,7 +36,7 @@ root: ../..
 
 <div>
 <p><strong>Works</strong>: simplistic bibliographical information for the works available in the library</p>
-
+<p>
 <table>
   <tr><th>Work_ID</th> <th>Title</th> <th>ISBN</th> <th>Date</th> <th>Place</th> <th>Publisher</th> <th>Edition</th> <th>Pages</th></tr>
 <TR><TD>1</TD>
@@ -85,11 +85,9 @@ root: ../..
 <TD>258</TD>
 </TR>
 </table>
-</div>
-
-<div>
+</p>
 <p><strong>Authors</strong>: the "authority file", containing information about the Authors of the Works</p>
-
+<p>
 <table>
   <tr><th>Author_ID</th> <th>Name</th> <th>Surname</th> <th>Occupation</th> <th>Birth</th> <th>Death</th></tr>
 <TR><TD>1</TD>
@@ -128,11 +126,10 @@ root: ../..
 <TD bgcolor="red"></TD>
 </TR>
 </table>
-</div>
+</p>
 
-<div>
 <p><strong>Works_Authors</strong>: The relationship between the Works and the Authors (more on that below)</p>
-
+<p>
 <table>
   <tr><th>Work_ID</th> <th>Author_ID</th> <th>Role</th></tr>
 <TR><TD>1</TD>
@@ -156,11 +153,11 @@ root: ../..
 <TD>Author</TD>
 </TR>
 </table>
-</div>
+</p>
 
-<div>
+
 <p><strong>Items</strong>: the actual copies of the Works owned by the library</p>
-
+<p>
 <table>
   <tr><th>Item_ID</th> <th>Work_ID</th> <th>Barcode</th> <th>Acquired</th> <th>Status</th></tr>
 <TR><TD>1</TD>
@@ -194,6 +191,7 @@ root: ../..
 <TD>Loaned</TD>
 </TR>
 </table>
+</p>
 </div>
 
 <div>
