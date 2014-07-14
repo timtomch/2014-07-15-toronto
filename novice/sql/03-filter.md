@@ -134,7 +134,7 @@ SELECT Title FROM Works WHERE Publisher="Wiley";</pre>
 </div>
 
 
-<!--><div>
+<!--<div>
 <p><img src="img/sql-filter.svg" alt="SQL Filtering in Action" /></p>
 </div>-->
 
