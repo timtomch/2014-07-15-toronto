@@ -651,7 +651,7 @@ SELECT DISTINCT Date, Publisher FROM Works WHERE (Publisher='Wiley' OR Publisher
 <div>
 <h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li><p>The library wants to weed its collection and you need to review all books published after 2004 (earlier books have already been reviewed) but before 2014. Write a query that selects the titles that need to be reviewed.</p></li>
+<li><p>The library wants to weed its collection and you need to review all books published after 2004 (earlier books have already been reviewed) but before 2010. Write a query that selects the titles that need to be reviewed.</p></li>
 <li><p>The SQL test <code>*column-name* LIKE *pattern*</code> is true if the value in the named column matches the pattern given; the character '%' can be used any number of times in the pattern to mean &quot;match zero or more characters&quot;.</p>
 <table>
   <tr> <th>
@@ -685,7 +685,7 @@ True
 True
 </td> </tr>
 </table>
-<p>The expression <code>*column-name* NOT LIKE *pattern*</code> inverts the test. Using <code>LIKE</code>, write a query that lists all books in the database that have the word "SQL" in their title and that have been published before 2010.</p></li>
+<p>The expression <code>*column-name* NOT LIKE *pattern*</code> inverts the test. Using <code>LIKE</code>, write a query that lists all books in the database that have the word "SQL" in their title and that have been published after 2010.</p></li>
 </ol>
 </div>
 
