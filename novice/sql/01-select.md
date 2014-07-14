@@ -128,7 +128,7 @@ root: ../..
 </table>
 </p>
 
-<p><strong>Works_Authors</strong>: The relationship between the Works and the Authors (more on that below)</p>
+<p><strong>Works_Authors</strong>: The relationship between the Works and the Authors (more on that later)</p>
 <p>
 <table>
   <tr><th>Work_ID</th> <th>Author_ID</th> <th>Role</th></tr>
@@ -293,7 +293,7 @@ SELECT Name, Surname FROM Authors;</pre>
 
 
 <div class="in">
-<pre>%%sqlite survey.db
+<pre>%%sqlite swclib.db
 SeLeCt NAME, SURNAME from auTHORS limit 5;</pre>
 </div>
 
@@ -320,7 +320,7 @@ SeLeCt NAME, SURNAME from auTHORS limit 5;</pre>
 
 <div>
 <p>Whatever casing convention you choose, please be consistent: complex queries are hard enough to read without the extra cognitive load of random capitalization. An usual practice is to type SQL commands in UPPER CASE, but it's really up to you.</p>
-<p>Note also the use of the LIMIT command in the above example. As the name implies, this limits output by only displaying the first 5 rows of data.</p>
+<p>Note also the use of the LIMIT command in the above example. As the name implies, this limits output by only displaying the first 5 rows of data. This command can be notably useful when trying out queries to a large database, helping you make sure you're getting out what you're looking for without wasting time displaying the entire table on every attempt.</p>
 </div>
 
 
@@ -330,7 +330,7 @@ SeLeCt NAME, SURNAME from auTHORS limit 5;</pre>
 
 
 <div class="in">
-<pre>%%sqlite survey.db
+<pre>%%sqlite swclib.db
 SELECT Surname, Name FROM Authors LIMIT 5;</pre>
 </div>
 
@@ -361,7 +361,7 @@ SELECT Surname, Name FROM Authors LIMIT 5;</pre>
 
 
 <div class="in">
-<pre>%%sqlite survey.db
+<pre>%%sqlite swclib.db
 SELECT Surname, Name, Surname FROM Authors LIMIT 5</pre>
 </div>
 
@@ -397,7 +397,7 @@ SELECT Surname, Name, Surname FROM Authors LIMIT 5</pre>
 
 
 <div class="in">
-<pre>%%sqlite survey.db
+<pre>%%sqlite swclib.db
 SELECT * FROM Authors LIMIT 5;</pre>
 </div>
 
