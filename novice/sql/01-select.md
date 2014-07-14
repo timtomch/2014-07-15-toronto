@@ -89,7 +89,7 @@ root: ../..
 <p><strong>Authors</strong>: the "authority file", containing information about the Authors of the Works</p>
 <p>
 <table>
-  <tr><th>Author_ID</th> <th>Name</th> <th>Surname</th> <th>Occupation</th> <th>Birth</th> <th>Death</th></tr>
+  <tr><th>Author_ID</th> <th>Family</th> <th>Personal</th> <th>Occupation</th> <th>Birth</th> <th>Death</th></tr>
 <TR><TD>1</TD>
 <TD>Kline</TD>
 <TD>Kevin E.</TD>
@@ -206,7 +206,7 @@ root: ../..
 
 <div class="in">
 <pre>%%sqlite swclib.db
-SELECT Name, Surname FROM Authors;</pre>
+SELECT Family, Personal FROM Authors;</pre>
 </div>
 
 <div class="out">
@@ -294,7 +294,7 @@ SELECT Name, Surname FROM Authors;</pre>
 
 <div class="in">
 <pre>%%sqlite swclib.db
-SeLeCt NAME, SURNAME from auTHORS limit 5;</pre>
+SeLeCt FAMILY, PERSONAL from auTHORS limit 5;</pre>
 </div>
 
 <div class="out">
@@ -331,7 +331,7 @@ SeLeCt NAME, SURNAME from auTHORS limit 5;</pre>
 
 <div class="in">
 <pre>%%sqlite swclib.db
-SELECT Surname, Name FROM Authors LIMIT 5;</pre>
+SELECT Personal, Family FROM Authors LIMIT 5;</pre>
 </div>
 
 <div class="out">
@@ -362,7 +362,7 @@ SELECT Surname, Name FROM Authors LIMIT 5;</pre>
 
 <div class="in">
 <pre>%%sqlite swclib.db
-SELECT Surname, Name, Surname FROM Authors LIMIT 5</pre>
+SELECT Personal, Family, Personal FROM Authors LIMIT 5</pre>
 </div>
 
 <div class="out">
@@ -441,6 +441,87 @@ SELECT * FROM Authors LIMIT 5;</pre>
 </table></pre>
 </div>
 
+<div>
+<blockquote>
+<p>It may seem strange to use <code>personal</code> and <code>family</code> as field names instead of <code>first</code> and <code>last</code>, but it's a necessary first step toward handling cultural differences. For example, consider the following rules:</p>
+</blockquote>
+<table>
+  <tr> <th>
+Full Name
+</th> <th>
+Alphabetized Under
+</th> <th>
+Reason
+</th> </tr>
+  <tr> <td>
+Liu Xiaobo
+</td> <td>
+Liu
+</td> <td>
+Chinese family names come first
+</td> </tr>
+  <tr> <td> 
+Leonardo da Vinci
+</td> <td>
+Leonardo
+</td> <td>
+&quot;da Vinci&quot; just means &quot;from Vinci&quot;
+</td> </tr>
+  <tr> <td> 
+Catherine de Medici
+</td> <td>
+Medici
+</td> <td>
+family name
+</td> </tr>
+  <tr> <td> 
+Jean de La Fontaine
+</td> <td>
+La Fontaine
+</td> <td>
+family name is &quot;La Fontaine&quot;
+</td> </tr>
+  <tr> <td> 
+Juan Ponce de Leon
+</td> <td>
+Ponce de Leon
+</td> <td>
+full family name is &quot;Ponce de Leon&quot;
+</td> </tr>
+  <tr> <td> 
+Gabriel Garcia Marquez
+</td> <td>
+Garcia Marquez
+</td> <td>
+double-barrelled Spanish surnames
+</td> </tr>
+  <tr> <td> 
+Wernher von Braun
+</td> <td>
+von <em>or</em> Braun
+</td> <td>
+depending on whether he was in Germany or the US
+</td> </tr>
+  <tr> <td> 
+Elizabeth Alexandra May Windsor
+</td> <td>
+Elizabeth
+</td> <td>
+monarchs alphabetize by the name under which they reigned
+</td> </tr>
+  <tr> <td> 
+Thomas a Beckett
+</td> <td>
+Thomas
+</td> <td>
+and saints according to the names by which they were canonized
+</td> </tr>
+</table>
+
+<blockquote>
+<p>Clearly, even a two-part division into &quot;personal&quot; and &quot;family&quot; isn't enough...</p>
+</blockquote>
+</div>
 
 <div>
 <h4 id="challenges">Challenges</h4>
@@ -448,9 +529,9 @@ SELECT * FROM Authors LIMIT 5;</pre>
 <li><p>Write a query that selects only titles from the <code>Works</code> table.</p></li>
 <li><p>Write a query that selects the first 10 barcodes and status from the <code>Items</code> table.</p></li>
 <li><p>Many people format queries as:</p>
-<pre><code>SELECT name, surname FROM authors;</code></pre>
+<pre><code>SELECT personal, family FROM authors;</code></pre>
 <p>or as:</p>
-<pre><code>select Name, Surname from AUTHORS;</code></pre>
+<pre><code>select Personal, Family from AUTHORS;</code></pre>
 <p>What style do you find easiest to read, and why?</p></li>
 </ol>
 </div>
