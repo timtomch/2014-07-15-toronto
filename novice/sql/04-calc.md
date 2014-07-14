@@ -199,28 +199,10 @@ SELECT * FROM Works WHERE Publisher='Peachpit' UNION SELECT * FROM Works WHERE P
 
 <div>
 <ol start="3" style="list-style-type: decimal">
-<li>The site identifiers in the <code>Visited</code> table have two parts separated by a '-':</li>
-</ol>
-</div>
-
-
-<div class="in">
-<pre>%%sqlite survey.db
-select distinct site from Visited;</pre>
-</div>
-
-<div class="out">
-<pre><table>
-<tr><td>DR-1</td></tr>
-<tr><td>DR-3</td></tr>
-<tr><td>MSK-4</td></tr>
-</table></pre>
-</div>
-
-<div>
-<p>The <code>Works</code> table contains <a href="https://en.wikipedia.org/wiki/ISBN">ISBN</a> numbers that are either in 10-digit or 13-digit format. The 13-digit numbers all start with the '978' prefix. The two digits following the prefix (or the first two digits in ISBN-10) form the &quot;registration group element&quot; (to simplify: language or country), the next four digits are the &quot;registrant element&quot; (publisher) and the next three are the &quot;publication element&quot; (title). The last digit in both formats is a checksum character.</p>
+<li><p>The <code>Works</code> table contains <a href="https://en.wikipedia.org/wiki/ISBN">ISBN</a> numbers that are either in 10-digit or 13-digit format. The 13-digit numbers all start with the '978' prefix. The two digits following the prefix (or the first two digits in ISBN-10) form the &quot;registration group element&quot; (to simplify: language or country), the next four digits are the &quot;registrant element&quot; (publisher) and the next three are the &quot;publication element&quot; (title). The last digit in both formats is a checksum character.</p>
 <p><a href="https://commons.wikimedia.org/wiki/File:ISBN_Details.svg#mediaviewer/File:ISBN_Details.svg"><img src="https://upload.wikimedia.org/wikipedia/commons/8/84/ISBN_Details.svg" alt="ISBN Details.svg" height="480" width="312"></a><br>"<a href="https://commons.wikimedia.org/wiki/File:ISBN_Details.svg#mediaviewer/File:ISBN_Details.svg">ISBN Details</a>" by <a href="//en.wikipedia.org/wiki/User:Sakurambo" class="extiw" title="wikipedia:User:Sakurambo">Sakurambo</a> at <a href="//en.wikipedia.org/wiki/" class="extiw" title="wikipedia:">English Wikipedia</a> - Own work, based on <a href="//en.wikipedia.org/wiki/Image:ISBN_Details.jpg" class="extiw" title="en:Image:ISBN Details.jpg">en::Image:ISBN Details.jpg</a>. Licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a> via <a href="//commons.wikimedia.org/wiki/">Wikimedia Commons</a>.</p>
 <p>The &quot;in string&quot; function <code>instr(X, Y)</code> returns the 1-based index of the first occurrence of string Y in string X, or 0 if Y does not exist in X. The substring function <code>substr(X, I)</code> returns the substring of X starting at index I. Use these two functions to produce a list of the 4-digit publisher codes (registrant elements) appearing in the <code>Works</code> table.</p>
+</li></ol>
 </div>
 
 
