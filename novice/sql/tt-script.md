@@ -22,5 +22,5 @@ root: ../..
 	</ul>
 	</li>
 <li>DISTINCT and ORDER BY</li>
-<li>WHERE clauses. Boolean operators. > AND OR.</li>
+<li>WHERE clauses. Boolean operators. > AND OR. LIKE and NOT LIKE</li>
 </ul>
