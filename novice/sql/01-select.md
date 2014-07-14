@@ -195,7 +195,7 @@ root: ../..
 </div>
 
 <div>
-<p>Notice that three entries—one in the <code>Visited</code> table, and two in the <code>Survey</code> table—are shown in red because they don't contain any actual data: we'll return to these missing values <a href="#s:null">later</a>. For now, let's write an SQL query that displays scientists' names. We do this using the SQL command <code>select</code>, giving it the names of the columns we want and the table we want them from. Our query and its output look like this:</p>
+<p>Notice that some entries are shown in red because they don't contain any actual data: we'll return to these missing values <a href="#s:null">later</a>. For now, let's write an SQL query that displays the names of all authors present in the catalogue. We do this using the SQL command <code>SELECT</code>, giving it the names of the columns we want and the table we want them from. Our query and its output look like this:</p>
 </div>
 
 
@@ -205,44 +205,122 @@ root: ../..
 
 
 <div class="in">
-<pre>%%sqlite survey.db
-select family, personal from Person;</pre>
+<pre>%%sqlite swclib.db
+SELECT Name, Surname FROM Authors;</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>Dyer</td><td>William</td></tr>
-<tr><td>Pabodie</td><td>Frank</td></tr>
-<tr><td>Lake</td><td>Anderson</td></tr>
-<tr><td>Roerich</td><td>Valentina</td></tr>
-<tr><td>Danforth</td><td>Frank</td></tr>
+	<TR><TD>Kline</TD>
+	<TD>Kevin E.</TD>
+	</TR>
+	<TR><TD>Kline</TD>
+	<TD>Daniel</TD>
+	</TR>
+	<TR><TD>Hunt</TD>
+	<TD>Brand</TD>
+	</TR>
+	<TR><TD>Taylor</TD>
+	<TD>Allen G.</TD>
+	</TR>
+	<TR><TD>McLaughlin</TD>
+	<TD>Brett</TD>
+	</TR>
+	<TR><TD>Kreibich</TD>
+	<TD>Jay A.</TD>
+	</TR>
+	<TR><TD>Chandra</TD>
+	<TD>Vikram</TD>
+	</TR>
+	<TR><TD>Piketty</TD>
+	<TD>Thomas</TD>
+	</TR>
+	<TR><TD>Goldhammer</TD>
+	<TD>Arthur</TD>
+	</TR>
+	<TR><TD>Oppel</TD>
+	<TD>Andrew J.</TD>
+	</TR>
+	<TR><TD>Sheldon</TD>
+	<TD>Robert</TD>
+	</TR>
+	<TR><TD>Kriegel</TD>
+	<TD>Alex</TD>
+	</TR>
+	<TR><TD>Fehily</TD>
+	<TD>Chris</TD>
+	</TR>
+	<TR><TD>Pratt</TD>
+	<TD>Philipp J. </TD>
+	</TR>
+	<TR><TD>Last</TD>
+	<TD>Mary Z.</TD>
+	</TR>
+	<TR><TD>Beaulieu</TD>
+	<TD>Alan</TD>
+	</TR>
+	<TR><TD>Churcher</TD>
+	<TD>Clare</TD>
+	</TR>
+	<TR><TD>Wilton</TD>
+	<TD>Paul</TD>
+	</TR>
+	<TR><TD>Colby</TD>
+	<TD>John W.</TD>
+	</TR>
+	<TR><TD>Mistry</TD>
+	<TD>Ross</TD>
+	</TR>
+	<TR><TD>Seenarine</TD>
+	<TD>Shirmattie</TD>
+	</TR>
+	<TR><TD>Barrows</TD>
+	<TD>Alison</TD>
+	</TR>
+	<TR><TD>Stockman</TD>
+	<TD>Joseph C.</TD>
+	</TR>
+	<TR><TD>Dyer</TD>
+	<TD>Russel J. T.</TD>
+	</TR>
 </table></pre>
 </div>
 
 
 <div>
-<p>The semi-colon at the end of the query tells the database manager that the query is complete and ready to run. We have written our commands and column names in lower case, and the table name in Title Case, but we don't have to: as the example below shows, SQL is <a href="../../gloss.html#case-insensitive">case insensitive</a>.</p>
+<p>The semi-colon at the end of the query tells the database manager that the query is complete and ready to run. We have written our commands in UPPER CASE, but the column and the table name in Title Case, but we don't have to: as the example below shows, SQL is <a href="../../gloss.html#case-insensitive">case insensitive</a>.</p>
 </div>
 
 
 <div class="in">
 <pre>%%sqlite survey.db
-SeLeCt FaMiLy, PeRsOnAl FrOm PeRsOn;</pre>
+SeLeCt NAME, SURNAME from auTHORS limit 5;</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>Dyer</td><td>William</td></tr>
-<tr><td>Pabodie</td><td>Frank</td></tr>
-<tr><td>Lake</td><td>Anderson</td></tr>
-<tr><td>Roerich</td><td>Valentina</td></tr>
-<tr><td>Danforth</td><td>Frank</td></tr>
+	<TR><TD>Kline</TD>
+	<TD>Kevin E.</TD>
+	</TR>
+	<TR><TD>Kline</TD>
+	<TD>Daniel</TD>
+	</TR>
+	<TR><TD>Hunt</TD>
+	<TD>Brand</TD>
+	</TR>
+	<TR><TD>Taylor</TD>
+	<TD>Allen G.</TD>
+	</TR>
+	<TR><TD>McLaughlin</TD>
+	<TD>Brett</TD>
+	</TR>
 </table></pre>
 </div>
 
 
 <div>
-<p>Whatever casing convention you choose, please be consistent: complex queries are hard enough to read without the extra cognitive load of random capitalization.</p>
+<p>Whatever casing convention you choose, please be consistent: complex queries are hard enough to read without the extra cognitive load of random capitalization. An usual practice is to type SQL commands in UPPER CASE, but it's really up to you.</p>
+<p>Note also the use of the LIMIT command in the above example. As the name implies, this limits output by only displaying the first 5 rows of data.</p>
 </div>
 
 
@@ -253,16 +331,26 @@ SeLeCt FaMiLy, PeRsOnAl FrOm PeRsOn;</pre>
 
 <div class="in">
 <pre>%%sqlite survey.db
-select personal, family from Person;</pre>
+SELECT Surname, Name FROM Authors LIMIT 5;</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>William</td><td>Dyer</td></tr>
-<tr><td>Frank</td><td>Pabodie</td></tr>
-<tr><td>Anderson</td><td>Lake</td></tr>
-<tr><td>Valentina</td><td>Roerich</td></tr>
-<tr><td>Frank</td><td>Danforth</td></tr>
+	<TR><TD>Kevin E.</TD>
+	<TD>Kline</TD>
+	</TR>
+	<TR><TD>Daniel</TD>
+	<TD>Kline</TD>
+	</TR>
+	<TR><TD>Brand</TD>
+	<TD>Hunt</TD>
+	</TR>
+	<TR><TD>Allen G.</TD>
+	<TD>Taylor</TD>
+	</TR>
+	<TR><TD>Brett</TD>
+	<TD>McLaughlin</TD>
+	</TR>
 </table></pre>
 </div>
 
@@ -274,16 +362,31 @@ select personal, family from Person;</pre>
 
 <div class="in">
 <pre>%%sqlite survey.db
-select ident, ident, ident from Person;</pre>
+SELECT Surname, Name, Surname FROM Authors LIMIT 5</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>dyer</td><td>dyer</td><td>dyer</td></tr>
-<tr><td>pb</td><td>pb</td><td>pb</td></tr>
-<tr><td>lake</td><td>lake</td><td>lake</td></tr>
-<tr><td>roe</td><td>roe</td><td>roe</td></tr>
-<tr><td>danforth</td><td>danforth</td><td>danforth</td></tr>
+	<TR><TD>Kevin E.</TD>
+	<TD>Kline</TD>
+	<TD>Kevin E.</TD>
+	</TR>
+	<TR><TD>Daniel</TD>
+	<TD>Kline</TD>
+	<TD>Daniel</TD>
+	</TR>
+	<TR><TD>Brand</TD>
+	<TD>Hunt</TD>
+	<TD>Brand</TD>
+	</TR>
+	<TR><TD>Allen G.</TD>
+	<TD>Taylor</TD>
+	<TD>Allen G.</TD>
+	</TR>
+	<TR><TD>Brett</TD>
+	<TD>McLaughlin</TD>
+	<TD>Brett</TD>
+	</TR>
 </table></pre>
 </div>
 
@@ -295,16 +398,46 @@ select ident, ident, ident from Person;</pre>
 
 <div class="in">
 <pre>%%sqlite survey.db
-select * from Person;</pre>
+SELECT * FROM Authors LIMIT 5;</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>dyer</td><td>William</td><td>Dyer</td></tr>
-<tr><td>pb</td><td>Frank</td><td>Pabodie</td></tr>
-<tr><td>lake</td><td>Anderson</td><td>Lake</td></tr>
-<tr><td>roe</td><td>Valentina</td><td>Roerich</td></tr>
-<tr><td>danforth</td><td>Frank</td><td>Danforth</td></tr>
+	<TR><TD>1</TD>
+	<TD>Kline</TD>
+	<TD>Kevin E.</TD>
+	<TD></TD>
+	<TD>1966</TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>2</TD>
+	<TD>Kline</TD>
+	<TD>Daniel</TD>
+	<TD></TD>
+	<TD></TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>3</TD>
+	<TD>Hunt</TD>
+	<TD>Brand</TD>
+	<TD></TD>
+	<TD></TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>4</TD>
+	<TD>Taylor</TD>
+	<TD>Allen G.</TD>
+	<TD></TD>
+	<TD>1945</TD>
+	<TD></TD>
+	</TR>
+	<TR><TD>5</TD>
+	<TD>McLaughlin</TD>
+	<TD>Brett</TD>
+	<TD></TD>
+	<TD></TD>
+	<TD></TD>
+	</TR>
 </table></pre>
 </div>
 
@@ -312,11 +445,11 @@ select * from Person;</pre>
 <div>
 <h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li><p>Write a query that selects only site names from the <code>Site</code> table.</p></li>
+<li><p>Write a query that selects only titles from the <code>Works</code> table.</p></li>
 <li><p>Many people format queries as:</p>
-<pre><code>SELECT personal, family FROM person;</code></pre>
+<pre><code>SELECT name, surname FROM authors;</code></pre>
 <p>or as:</p>
-<pre><code>select Personal, Family from PERSON;</code></pre>
+<pre><code>select Name, Surname from AUTHORS;</code></pre>
 <p>What style do you find easiest to read, and why?</p></li>
 </ol>
 </div>
