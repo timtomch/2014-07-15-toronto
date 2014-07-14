@@ -31,15 +31,10 @@ root: ../..
 <p>Every database manager—Oracle, IBM DB2, PostgreSQL, MySQL, Microsoft Access, and SQLite—stores data in a different way, so a database created with one cannot be used directly by another. However, every database manager can import and export data in a variety of formats, so it <em>is</em> possible to move information from one to another.</p>
 </blockquote>
 <p>Queries are written in a language called <a href="../../gloss.html#sql">SQL</a>, which stands for &quot;Structured Query Language&quot;. SQL provides hundreds of different ways to analyze and recombine data; we will only look at a handful, but that handful accounts for most of what scientists do.</p>
-<p>The tables below show the database we will use in our library example. Students using SQLite can <a href="swclib.db">download</a> the database to try the queries along.</p>
+<p>The tables below show the database we will use in our library example. Students using SQLite can <a href="swclib.db">download</a> the database to try the queries along. Only the first 5 rows of each table are displayed here.</p>
 </div>
 
-
-<div>
-<table>
-<tr>
-<td valign="top">
-<p><strong>Works</strong>: bibliographical database for books available in the library</p>
+<p><strong>Works</strong>: simplistic bibliographical information for the works available in the library</p>
 
 <table>
   <tr><th>Work_ID</th> <th>Title</th> <th>ISBN</th> <th>Date</th> <th>Place</th> <th>Publisher</th> <th>Edition</th> <th>Pages</th></tr>
@@ -59,7 +54,7 @@ root: ../..
 <TD>Hoboken</TD>
 <TD>Wiley</TD>
 <TD>8th ed.</TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
 </TR>
 <TR><TD>3</TD>
 <TD>PHP &amp; MySQL</TD>
@@ -85,327 +80,113 @@ root: ../..
 <TD>2014</TD>
 <TD>London</TD>
 <TD>Faber &amp; Faber</TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
 <TD>258</TD>
 </TR>
-<TR><TD>6</TD>
-<TD>Capital in the 21st century</TD>
-<TD>9780674430006</TD>
-<TD>2014</TD>
-<TD>Cambridge</TD>
-<TD>Belknap Press</TD>
+</table>
+
+<p><strong>Authors</strong>: the "authority file", containing information about the Authors of the Works</p>
+
+<table>
+  <tr><th>Author_ID</th> <th>Name</th> <th>Surname</th> <th>Occupation</th> <th>Birth</th> <th>Death</th></tr>
+<TR><TD>1</TD>
+<TD>Kline</TD>
+<TD>Kevin E.</TD>
 <TD></TD>
-<TD>685</TD>
+<TD>1966</TD>
+<TD></TD>
+</TR>
+<TR><TD>2</TD>
+<TD>Kline</TD>
+<TD>Daniel</TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+</TR>
+<TR><TD>3</TD>
+<TD>Hunt</TD>
+<TD>Brand</TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
+</TR>
+<TR><TD>4</TD>
+<TD>Taylor</TD>
+<TD>Allen G.</TD>
+<TD></TD>
+<TD>1945</TD>
+<TD></TD>
+</TR>
+<TR><TD>5</TD>
+<TD>McLaughlin</TD>
+<TD>Brett</TD>
+<TD></TD>
+<TD></TD>
+<TD></TD>
 </TR>
 </table>
 
-<p><strong>Site</strong>: locations where readings were taken.</p>
+<p><strong>Works_Authors</strong>: The relationship between the Works and the Authors (more on that below)</p>
+
 <table>
-  <tr> <th>
-name
-</th> <th>
-lat
-</th> <th>
-long
-</th> </tr>
-  <tr> <td>
-DR-1
-</td> <td>
--49.85
-</td> <td>
--128.57
-</td> </tr>
-  <tr> <td>
-DR-3
-</td> <td>
--47.15
-</td> <td>
--126.72
-</td> </tr>
-  <tr> <td>
-MSK-4
-</td> <td>
--48.87
-</td> <td>
--123.4
-</td> </tr>
+  <tr><th>Work_ID</th> <th>Author_ID</th> <th>Role</th></tr>
+<TR><TD>1</TD>
+<TD>1</TD>
+<TD>Author</TD>
+</TR>
+<TR><TD>1</TD>
+<TD>2</TD>
+<TD>Contributor</TD>
+</TR>
+<TR><TD>1</TD>
+<TD>3</TD>
+<TD>Contributor</TD>
+</TR>
+<TR><TD>2</TD>
+<TD>4</TD>
+<TD>Author</TD>
+</TR>
+<TR><TD>3</TD>
+<TD>5</TD>
+<TD>Author</TD>
+</TR>
 </table>
 
-<p><strong>Visited</strong>: when readings were taken at specific sites.</p>
-<table>
-  <tr> <th>
-ident
-</th> <th>
-site
-</th> <th>
-dated
-</th> </tr>
-  <tr> <td>
-619
-</td> <td>
-DR-1
-</td> <td>
-1927-02-08
-</td> </tr>
-  <tr> <td>
-622
-</td> <td>
-DR-1
-</td> <td>
-1927-02-10
-</td> </tr>
-  <tr> <td>
-734
-</td> <td>
-DR-3
-</td> <td>
-1939-01-07
-</td> </tr>
-  <tr> <td>
-735
-</td> <td>
-DR-3
-</td> <td>
-1930-01-12
-</td> </tr>
-  <tr> <td>
-751
-</td> <td>
-DR-3
-</td> <td>
-1930-02-26
-</td> </tr>
-  <tr> <td>
-752
-</td> <td>
-DR-3
-</td> <td bgcolor="red">
- 
-</td> </tr>
-  <tr> <td>
-837
-</td> <td>
-MSK-4
-</td> <td>
-1932-01-14
-</td> </tr>
-  <tr> <td>
-844
-</td> <td>
-DR-1
-</td> <td>
-1932-03-22
-</td> </tr>
-</table>
-</td>
-<td valign="top">
-<p><strong>Survey</strong>: the actual readings.</p>
-<table>
-  <tr> <th>
-taken
-</th> <th>
-person
-</th> <th>
-quant
-</th> <th>
-reading
-</th> </tr>
-  <tr> <td>
-619
-</td> <td>
-dyer
-</td> <td>
-rad
-</td> <td>
-9.82
-</td> </tr>
-  <tr> <td>
-619
-</td> <td>
-dyer
-</td> <td>
-sal
-</td> <td>
-0.13
-</td> </tr>
-  <tr> <td>
-622
-</td> <td>
-dyer
-</td> <td>
-rad
-</td> <td>
-7.8
-</td> </tr>
-  <tr> <td>
-622
-</td> <td>
-dyer
-</td> <td>
-sal
-</td> <td>
-0.09
-</td> </tr>
-  <tr> <td>
-734
-</td> <td>
-pb
-</td> <td>
-rad
-</td> <td>
-8.41
-</td> </tr>
-  <tr> <td>
-734
-</td> <td>
-lake
-</td> <td>
-sal
-</td> <td>
-0.05
-</td> </tr>
-  <tr> <td>
-734
-</td> <td>
-pb
-</td> <td>
-temp
-</td> <td>
--21.5
-</td> </tr>
-  <tr> <td>
-735
-</td> <td>
-pb
-</td> <td>
-rad
-</td> <td>
-7.22
-</td> </tr>
-  <tr> <td>
-735
-</td> <td bgcolor="red">
- 
-</td> <td>
-sal
-</td> <td>
-0.06
-</td> </tr>
-  <tr> <td>
-735
-</td> <td bgcolor="red">
- 
-</td> <td>
-temp
-</td> <td>
--26.0
-</td> </tr>
-  <tr> <td>
-751
-</td> <td>
-pb
-</td> <td>
-rad
-</td> <td>
-4.35
-</td> </tr>
-  <tr> <td>
-751
-</td> <td>
-pb
-</td> <td>
-temp
-</td> <td>
--18.5
-</td> </tr>
-  <tr> <td>
-751
-</td> <td>
-lake
-</td> <td>
-sal
-</td> <td>
-0.1
-</td> </tr>
-  <tr> <td>
-752
-</td> <td>
-lake
-</td> <td>
-rad
-</td> <td>
-2.19
-</td> </tr>
-  <tr> <td>
-752
-</td> <td>
-lake
-</td> <td>
-sal
-</td> <td>
-0.09
-</td> </tr>
-  <tr> <td>
-752
-</td> <td>
-lake
-</td> <td>
-temp
-</td> <td>
--16.0
-</td> </tr>
-  <tr> <td>
-752
-</td> <td>
-roe
-</td> <td>
-sal
-</td> <td>
-41.6
-</td> </tr>
-  <tr> <td>
-837
-</td> <td>
-lake
-</td> <td>
-rad
-</td> <td>
-1.46
-</td> </tr>
-  <tr> <td>
-837
-</td> <td>
-lake
-</td> <td>
-sal
-</td> <td>
-0.21
-</td> </tr>
-  <tr> <td>
-837
-</td> <td>
-roe
-</td> <td>
-sal
-</td> <td>
-22.5
-</td> </tr>
-  <tr> <td>
-844
-</td> <td>
-roe
-</td> <td>
-rad
-</td> <td>
-11.25
-</td> </tr>
-</table>
-</td>
-</tr>
-</table>
+<p><strong>Items</strong>: the actual copies of the Works owned by the library</p>
 
-</div>
-
+<table>
+  <tr><th>Item_ID</th> <th>Work_ID</th> <th>Barcode</th> <th>Acquired</th> <th>Status</th></tr>
+<TR><TD>1</TD>
+<TD>1</TD>
+<TD>081722942611</TD>
+<TD>2009</TD>
+<TD>Loaned</TD>
+</TR>
+<TR><TD>2</TD>
+<TD>1</TD>
+<TD>492437609065</TD>
+<TD>2011</TD>
+<TD>On shelf</TD>
+</TR>
+<TR><TD>3</TD>
+<TD>2</TD>
+<TD>172480710952</TD>
+<TD>2013</TD>
+<TD>On shelf</TD>
+</TR>
+<TR><TD>4</TD>
+<TD>3</TD>
+<TD>708014968732</TD>
+<TD>2013</TD>
+<TD>Missing</TD>
+</TR>
+<TR><TD>5</TD>
+<TD>3</TD>
+<TD>819783404942</TD>
+<TD>2014</TD>
+<TD>Loaned</TD>
+</TR>
+</table>
 
 <div>
 <p>Notice that three entries—one in the <code>Visited</code> table, and two in the <code>Survey</code> table—are shown in red because they don't contain any actual data: we'll return to these missing values <a href="#s:null">later</a>. For now, let's write an SQL query that displays scientists' names. We do this using the SQL command <code>select</code>, giving it the names of the columns we want and the table we want them from. Our query and its output look like this:</p>
