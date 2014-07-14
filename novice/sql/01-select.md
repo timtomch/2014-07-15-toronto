@@ -34,6 +34,7 @@ root: ../..
 <p>The tables below show the database we will use in our library example. Students using SQLite can <a href="swclib.db">download</a> the database to try the queries along. Only the first 5 rows of each table are displayed here.</p>
 </div>
 
+<div>
 <p><strong>Works</strong>: simplistic bibliographical information for the works available in the library</p>
 
 <table>
@@ -84,7 +85,9 @@ root: ../..
 <TD>258</TD>
 </TR>
 </table>
+</div>
 
+<div>
 <p><strong>Authors</strong>: the "authority file", containing information about the Authors of the Works</p>
 
 <table>
@@ -92,40 +95,42 @@ root: ../..
 <TR><TD>1</TD>
 <TD>Kline</TD>
 <TD>Kevin E.</TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
 <TD>1966</TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
 </TR>
 <TR><TD>2</TD>
 <TD>Kline</TD>
 <TD>Daniel</TD>
-<TD></TD>
-<TD></TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
+<TD bgcolor="red"></TD>
+<TD bgcolor="red"></TD>
 </TR>
 <TR><TD>3</TD>
 <TD>Hunt</TD>
 <TD>Brand</TD>
-<TD></TD>
-<TD></TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
+<TD bgcolor="red"></TD>
+<TD bgcolor="red"></TD>
 </TR>
 <TR><TD>4</TD>
 <TD>Taylor</TD>
 <TD>Allen G.</TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
 <TD>1945</TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
 </TR>
 <TR><TD>5</TD>
 <TD>McLaughlin</TD>
 <TD>Brett</TD>
-<TD></TD>
-<TD></TD>
-<TD></TD>
+<TD bgcolor="red"></TD>
+<TD bgcolor="red"></TD>
+<TD bgcolor="red"></TD>
 </TR>
 </table>
+</div>
 
+<div>
 <p><strong>Works_Authors</strong>: The relationship between the Works and the Authors (more on that below)</p>
 
 <table>
@@ -151,7 +156,9 @@ root: ../..
 <TD>Author</TD>
 </TR>
 </table>
+</div>
 
+<div>
 <p><strong>Items</strong>: the actual copies of the Works owned by the library</p>
 
 <table>
@@ -187,6 +194,7 @@ root: ../..
 <TD>Loaned</TD>
 </TR>
 </table>
+</div>
 
 <div>
 <p>Notice that three entries—one in the <code>Visited</code> table, and two in the <code>Survey</code> table—are shown in red because they don't contain any actual data: we'll return to these missing values <a href="#s:null">later</a>. For now, let's write an SQL query that displays scientists' names. We do this using the SQL command <code>select</code>, giving it the names of the columns we want and the table we want them from. Our query and its output look like this:</p>
