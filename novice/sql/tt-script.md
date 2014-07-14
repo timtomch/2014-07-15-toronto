@@ -13,5 +13,12 @@ root: ../..
 		<li>.schema</li>
 	</ul>
 	</li>
-<li>First SELECT statement. Check output format. If format is garbled, use .mode column</li>
+<li>First SELECT statement. Check output format. If format is garbled, use .mode column
+	<ul>
+		<li>SELECT name, surname FROM authors</li>
+		<li>Case insensitivity</li>
+		<li>SELECT *</li>
+		<li>LIMIT statement</li>
+	</ul>
+	</li>
 </ul>
