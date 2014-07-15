@@ -25,4 +25,6 @@ root: ../..
 <li>WHERE clauses. Boolean operators. > AND OR. LIKE and NOT LIKE</li>
 <li>Operations. SELECT 1+2.</li>
 <li>NULL</li>
+<li>GROUP BY</li>
+<li>JOIN</li>
 </ul>
