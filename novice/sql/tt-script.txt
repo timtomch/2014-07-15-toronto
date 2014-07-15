@@ -143,7 +143,7 @@ Write a query that lists all books in the database that have the word "SQL" in t
 
 
 
-6 OPERATIONS ?
+6 OPERATIONS
 
 This actually works SELECT 1+2
 

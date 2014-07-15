@@ -8,7 +8,7 @@ root: ../..
 
 <div>
 <p>For this lesson, we're going to use the library of the <em>SQL Learners Academy</em> as an example. Since the Academy is much more concerned about teaching SQL than proper cataloguing, its library catalogue is quite rudimentary. The catalogue is based on a few tables that are in relation to each other, enough to get the concept of relational databases across, and run some simple quries!</p>
-<p>More importantly, the raw database is always <a href="swclib.db">available for download</a> (in SQLite format) so that students can learn to tinker SQL.</p>
+<p>More importantly, the raw database is always available for download <a href="swclib.db">as an SQLite database file</a> or <a href="swclib.sql">as an SQL dump</a> so that students can learn to tinker SQL.</p>
 </div>
 
 
