@@ -1,0 +1,68 @@
+
+## SQL Bootcamp script
+
+1 WHAT IS SQL
+
+2 GETTING STARTED
+Make sure everyone has a working sqlite bin, and has downloaded the example db
+
+Create new directory
+
+curl -L http://j.mp/swcTOlib -o 'swclib.db' OR download from browser
+sqlite3 swclib.db
+.schema
+
+
+3 SELECT
+
+
+
+4 DISTINCT, ORDER BY
+
+
+
+5 WHERE clauses & operators
+
+
+LIKE
+
+
+
+6 OPERATIONS ?
+
+This actually works SELECT 1+2
+
+
+
+7 NULL
+
+
+
+8 GROUP BY
+
+
+
+
+
+9 JOIN ON
+
+
+
+
+
+
+10 UPDATE
+
+
+
+
+
+
+REDO THIS
+
+TO DO
+- script
+- with actual examples, questions and solutions
+- finish editing lesson
+- manpages
+
