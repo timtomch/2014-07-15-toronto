@@ -745,17 +745,17 @@ SELECT Items.Barcode, Works.Title, Works.ISBN FROM Items JOIN Works ON Items.Wor
 
 
 <div>
-<p>If joining two tables is possible, then joining more than three tables must be possible. In fact, we can join any number of tables simply by adding more <code>JOIN</code> clauses to our query, and more <code>ON</code> tests to filter out combinations of records that don't make sense. We can now try to tackle the case of the <code>Authors</code> table. To list the contributors associated with the first item on the <code>Works</code> table (<code>Work_ID=1</code>, SQL in a nutshell 3rd ed.), we write:</p>
+<p>We can now try to tackle the case of the <code>Authors</code> table. To list the contributors associated with the first item on the <code>Works</code> table (<code>Work_ID=1</code>, SQL in a nutshell 3rd ed.), we write:</p>
 </div>
 
 
 <div class="in">
 <pre>%%sqlite swclib.db
 SELECT Works_Authors.Role, Authors.Personal, Authors.Family 
-FROM   Works 
-JOIN   Works_Authors ON Works.Work_ID=Works_Authors.Work_ID 
-JOIN   Authors ON Authors.Author_ID=Works_Authors.Author_ID 
-WHERE  Works.Work_ID=1;
+FROM   Works_Authors 
+JOIN   Authors 
+ON     Authors.Author_ID=Works_Authors.Author_ID 
+WHERE  Works_Authors.Work_ID=1;
 </pre>
 </div>
 
@@ -776,25 +776,97 @@ WHERE  Works.Work_ID=1;
 </table></pre>
 </div>
 
-
 <div>
-<p>We can tell which records from <code>Site</code>, <code>Visited</code>, and <code>Survey</code> correspond with each other because those tables contain <a href="../../gloss.html#primary-key">primary keys</a> and <a href="../../gloss.html#foreign-key">foreign keys</a>. A primary key is a value, or combination of values, that uniquely identifies each record in a table. A foreign key is a value (or combination of values) from one table that identifies a unique record in another table. Another way of saying this is that a foreign key is the primary key of one table that appears in some other table. In our database, <code>Person.ident</code> is the primary key in the <code>Person</code> table, while <code>Survey.person</code> is a foreign key relating the <code>Survey</code> table's entries to entries in <code>Person</code>.</p>
-<p>Most database designers believe that every table should have a well-defined primary key. They also believe that this key should be separate from the data itself, so that if we ever need to change the data, we only need to make one change in one place. One easy way to do this is to create an arbitrary, unique ID for each record as we add it to the database. This is actually very common: those IDs have names like &quot;student numbers&quot; and &quot;patient numbers&quot;, and they almost always turn out to have originally been a unique record identifier in some database system or other. As the query below demonstrates, SQLite automatically numbers records as they're added to tables, and we can use those record numbers in queries:</p>
+<p>Or inversely, if we want to list all the works that Allen G. Taylor (<code>Author_ID=4</code>) has authored or contributed to, we can write:</p>
 </div>
 
-
 <div class="in">
-<pre>%%sqlite survey.db
-select rowid, * from Person;</pre>
+<pre>%%sqlite swclib.db
+SELECT Works.Title, Works.Date, Works.Edition, Works_Authors.Role 
+FROM   Works 
+JOIN   Works_Authors 
+ON     Works.Work_ID=Works_Authors.Work_ID 
+WHERE  Works_Authors.Author_ID=4;
+</pre>
 </div>
 
 <div class="out">
 <pre><table>
-<tr><td>1</td><td>dyer</td><td>William</td><td>Dyer</td></tr>
-<tr><td>2</td><td>pb</td><td>Frank</td><td>Pabodie</td></tr>
-<tr><td>3</td><td>lake</td><td>Anderson</td><td>Lake</td></tr>
-<tr><td>4</td><td>roe</td><td>Valentina</td><td>Roerich</td></tr>
-<tr><td>5</td><td>danforth</td><td>Frank</td><td>Danforth</td></tr>
+	<TR><TD>SQL for dummies</TD>
+	<TD>2013</TD>
+	<TD>8th ed.</TD>
+	<TD>Author</TD>
+	</TR>
+	<TR><TD>SQL for dummies</TD>
+	<TD>2010</TD>
+	<TD>7th ed.</TD>
+	<TD>Author</TD>
+	</TR>
+	<TR><TD>SQL all-in-one</TD>
+	<TD>2011</TD>
+	<TD>2nd ed.</TD>
+	<TD>Author</TD>
+	</TR>
+	<TR><TD>Access 2013 all-in-one</TD>
+	<TD>2013</TD>
+	<TD></TD>
+	<TD>Contributor</TD>
+	</TR>
+</table></pre>
+</div>
+
+<div>
+<p>If joining two tables is good, then joining more tables must be better. In fact, we can join any number of tables simply by adding more <code>JOIN</code> clauses to our query, and more <code>ON</code> tests to filter out combinations of records that don't make sense.</p>	
+</div>
+
+<div>
+<p>We can tell which records from <code>Works</code>, <code>Authors</code>, <code>Items</code> and <code>Works_Authors</code> correspond with each other because those tables contain <a href="../../gloss.html#primary-key">primary keys</a> and <a href="../../gloss.html#foreign-key">foreign keys</a>. A primary key is a value, or combination of values, that uniquely identifies each record in a table. A foreign key is a value (or combination of values) from one table that identifies a unique record in another table. Another way of saying this is that a foreign key is the primary key of one table that appears in some other table. In our database, <code>Works.Work_ID</code> is the primary key in the <code>Works</code> table, while <code>Items.Work_ID</code> is a foreign key relating the <code>Items</code> table's entries to entries in <code>Works</code>. The <code>Authors_Works</code> table contains only foreign keys relating to entries in the <code>Works</code> and <code>Authors</code> tables.</p>
+<p>Most database designers believe that every table should have a well-defined primary key. They also believe that this key should be separate from the data itself, so that if we ever need to change the data, we only need to make one change in one place. One easy way to do this is to create an arbitrary, unique ID for each record as we add it to the database. This is actually very common: those IDs have names like &quot;student numbers&quot; and &quot;library card numbers&quot;, and they almost always turn out to have originally been a unique record identifier in some database system or other. As the query below demonstrates, SQLite actually numbers records automatically as they're added to tables, and this number could have been used instead of the ID numbers that were specified in the example tables:</p>
+</div>
+
+
+<div class="in">
+<pre>%%sqlite swclib.db
+SELECT rowid, * from Items LIMIT 5;</pre>
+</div>
+
+<div class="out">
+<pre><table>
+	<TR><TD>1</TD>
+	<TD>1</TD>
+	<TD>1</TD>
+	<TD>081722942611</TD>
+	<TD>2009</TD>
+	<TD>Loaned</TD>
+	</TR>
+	<TR><TD>2</TD>
+	<TD>2</TD>
+	<TD>1</TD>
+	<TD>492437609065</TD>
+	<TD>2011</TD>
+	<TD>On shelf</TD>
+	</TR>
+	<TR><TD>3</TD>
+	<TD>3</TD>
+	<TD>2</TD>
+	<TD>172480710952</TD>
+	<TD>2013</TD>
+	<TD>On shelf</TD>
+	</TR>
+	<TR><TD>4</TD>
+	<TD>4</TD>
+	<TD>3</TD>
+	<TD>708014968732</TD>
+	<TD>2013</TD>
+	<TD>Missing</TD>
+	</TR>
+	<TR><TD>5</TD>
+	<TD>5</TD>
+	<TD>3</TD>
+	<TD>819783404942</TD>
+	<TD>2014</TD>
+	<TD>Loaned</TD>
+	</TR>
 </table></pre>
 </div>
 
@@ -803,85 +875,54 @@ select rowid, * from Person;</pre>
 
 <div>
 <p>Now that we have seen how joins work, we can see why the relational model is so useful and how best to use it. The first rule is that every value should be <a href="../../gloss.html#atomic-value">atomic</a>, i.e., not contain parts that we might want to work with separately. We store personal and family names in separate columns instead of putting the entire name in one column so that we don't have to use substring operations to get the name's components. More importantly, we store the two parts of the name separately because splitting on spaces is unreliable: just think of a name like &quot;Eloise St. Cyr&quot; or &quot;Jan Mikkel Steubart&quot;.</p>
-<p>The second rule is that every record should have a unique primary key. This can be a serial number that has no intrinsic meaning, one of the values in the record (like the <code>ident</code> field in the <code>Person</code> table), or even a combination of values: the triple <code>(taken, person, quant)</code> from the <code>Survey</code> table uniquely identifies every measurement.</p>
-<p>The third rule is that there should be no redundant information. For example, we could get rid of the <code>Site</code> table and rewrite the <code>Visited</code> table like this:</p>
+<p>The second rule is that every record should have a unique primary key. This can be a serial number that has no intrinsic meaning, one of the values in the record (like the <code>Work_ID</code> field in the <code>Works</code> table), or even a combination of values.</p>
+<p>The third rule is that there should be no redundant information. For example, we could get rid of the <code>Works</code> table and rewrite the <code>Items</code> table something like this:</p>
 <table>
-  <tr> <td>
-619
-</td> <td>
--49.85
-</td> <td>
--128.57
-</td> <td>
-1927-02-08
-</td> </tr>
-  <tr> <td>
-622
-</td> <td>
--49.85
-</td> <td>
--128.57
-</td> <td>
-1927-02-10
-</td> </tr>
-  <tr> <td>
-734
-</td> <td>
--47.15
-</td> <td>
--126.72
-</td> <td>
-1939-01-07
-</td> </tr>
-  <tr> <td>
-735
-</td> <td>
--47.15
-</td> <td>
--126.72
-</td> <td>
-1930-01-12
-</td> </tr>
-  <tr> <td>
-751
-</td> <td>
--47.15
-</td> <td>
--126.72
-</td> <td>
-1930-02-26
-</td> </tr>
-  <tr> <td>
-752
-</td> <td>
--47.15
-</td> <td>
--126.72
-</td> <td>
-null
-</td> </tr>
-  <tr> <td>
-837
-</td> <td>
--48.87
-</td> <td>
--123.40
-</td> <td>
-1932-01-14
-</td> </tr>
-  <tr> <td>
-844
-</td> <td>
--49.85
-</td> <td>
--128.57
-</td> <td>
-1932-03-22
-</td> </tr>
+	<tr><th>Item_ID</th> <th>Title</th> <th>Publisher</th> <th>Date</th> <th>Barcode</th> <th>Acquired</th> <th>Status</th></tr>
+	<TR><TD>1</TD>
+	<TD>SQL in a nutshell</TD>
+	<TD>Sebastopol: O'Reilly</TD>
+	<TD>2009</TD>
+	<TD>081722942611</TD>
+	<TD>2009</TD>
+	<TD>Loaned</TD>
+	</TR>
+	<TR><TD>2</TD>
+	<TD>SQL in a nutshell</TD>
+	<TD>Sebastopol: O'Reilly</TD>
+	<TD>2009</TD>
+	<TD>492437609065</TD>
+	<TD>2011</TD>
+	<TD>On shelf</TD>
+	</TR>
+	<TR><TD>3</TD>
+	<TD>SQL for dummies</TD>
+	<TD>Hoboken: Wiley</TD>
+	<TD>2013</TD>
+	<TD>172480710952</TD>
+	<TD>2013</TD>
+	<TD>On shelf</TD>
+	</TR>
+	<TR><TD>4</TD>
+	<TD>PHP &and; MySQL</TD>
+	<TD>Sebastopol: O'Reilly</TD>
+	<TD>2013</TD>
+	<TD>708014968732</TD>
+	<TD>2013</TD>
+	<TD>Missing</TD>
+	</TR>
+	<TR><TD>5</TD>
+	<TD>PHP &and; MySQL</TD>
+	<TD>Sebastopol: O'Reilly</TD>
+	<TD>2013</TD>
+	<TD>819783404942</TD>
+	<TD>2014</TD>
+	<TD>Loaned</TD>
+	</TR>
 </table>
 
-<p>In fact, we could use a single table that recorded all the information about each reading in each row, just as a spreadsheet would. The problem is that it's very hard to keep data organized this way consistent: if we realize that the date of a particular visit to a particular site is wrong, we have to change multiple records in the database. What's worse, we may have to guess which records to change, since other sites may also have been visited on that date.</p>
-<p>The fourth rule is that the units for every value should be stored explicitly. Our database doesn't do this, and that's a problem: Roerich's salinity measurements are several orders of magnitude larger than anyone else's, but we don't know if that means she was using parts per million instead of parts per thousand, or whether there actually was a saline anomaly at that site in 1932.</p>
+<p>In fact, we could use a single table that recorded all the information about each item in each row, just as a spreadsheet would. The problem is that it's very hard to keep data organized this way consistent: if we realize that the bibliographic information associated with a series of items is wrong, we have to change multiple records in the database. Similarly, storing authors' and contributors' names in separate columns would mean adding an extra column every time we encounter a title that has more contributors than all the previous items. If we have only one item that has twenty contributors, a spreadsheet design would require twenty separate columns to store this information, and those columns would sit empty for the majority of the items. This is one of the reasons why authority files are in separate tables.</p>
+<p>The fourth rule is that the units for every value should be stored explicitly. In this particular database, it's not very important (although we could specify that the <code>Pages</code> field contains the count of pages in any given book). This can be a problem in databases that contain scientific data, for example.</p>
 <p>Stepping back, data and the tools used to store it have a symbiotic relationship: we use tables and joins because it's efficient, provided our data is organized a certain way, but organize our data that way because we have tools to manipulate it efficiently if it's in a certain form. As anthropologists say, the tool shapes the hand that shapes the tool.</p>
 </div>
 
@@ -890,10 +931,7 @@ null
 <h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
 <li><p>Write a query that lists all radiation readings from the DR-1 site.</p></li>
-<li><p>Write a query that lists all sites visited by people named &quot;Frank&quot;.</p></li>
-<li><p>Describe in your own words what the following query produces:</p>
-<pre><code>select Site.name from Site join Visited
-on Site.lat&lt;-49.0 and Site.name=Visited.site and Visited.dated&gt;=&#39;1932-00-00&#39;;</code></pre></li>
+<li><p>Write a query that lists all works written by people whose name start with the letter &quot;K&quot;.</p></li>
 </ol>
 </div>
 
