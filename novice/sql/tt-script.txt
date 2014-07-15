@@ -3,6 +3,20 @@
 
 1 WHAT IS SQL
 
+Structured Query Language
+
+The language of databases. Not really a programming language, used to talk with databases. But more powerful than a simple search string. Can ACT on databases.
+
+Many dialects. Set of core commands (that we will learn today), while more complex functions e.g. concatenation, date manipulation depend on the implementation.
+
+Several implementations
+- MySQL
+- PostreSQL
+- MS SQL (Access)
+- SQLite
+
+
+
 2 GETTING STARTED
 Make sure everyone has a working sqlite bin, and has downloaded the example db
 
@@ -13,24 +27,129 @@ sqlite3 swclib.db
 .schema
 
 
+Follow along https://timtomch.github.io/2014-07-15-toronto/novice/sql/
+
+
+
 3 SELECT 
+
+SELECT Family, Personal FROM Authors;
+
+
+.mode setting ?
+	- column
+	- html
+	
+
+
+(SQL is case-insensitive but good practice to capitalize commands)
+
+
+LIMIT statement
+
+
+Wildcard to select all columns:
+
+
+SELECT * FROM Authors LIMIT 5;
+
+
+
+
+
+-- CHALLENGE --
+
+Write a query that selects only titles from the Works table.
+
+	SELECT Title FROM Works;
+
+Write a query that selects the first 10 barcodes and status from the Items table
+
+	SELECT Barcode, Status FROM Items LIMIT 10;
+
+
+
 
 
 
 4 DISTINCT, ORDER BY
 
+SELECT Publisher from Works;
+
+to remove duplicates
+
+SELECT DISTINCT Publisher from Works;
 
 
-5 WHERE clauses & operators
+Order
+
+
+SELECT DISTINCT Publisher FROM Works ORDER BY Publisher;
+
+SELECT DISTINCT Publisher FROM Works ORDER BY Publisher DESC;
+
+SELECT DISTINCT Publisher FROM Works ORDER BY Publisher ASC;
+
+
+
+-- CHALLENGE --
+
+Write a query that displays all the distinct years in which items were purchased for the library, in descending order. Hint, look at the Aquired column in the Items table.
+
+	SELECT DISTINCT Acquired FROM Items ORDER BY Acquired DESC;
+
+
+
+
+
+
+
+
+5 FILTERING - WHERE clauses & operators
+
+
+
+SELECT * FROM Works WHERE Publisher="Wiley";
+
+
+Not necessary to display the columns used for filtering
+
+SELECT Title FROM Works WHERE Publisher="Wiley";
+
+
+Boolean operators:
+SELECT * FROM Works WHERE (Publisher='Wiley') AND (Date>='2011');
+
+SELECT * FROM Works WHERE Publisher='Wiley' OR Publisher='O''Reilly';
+
+SELECT * FROM Works WHERE Publisher IN('Wiley','O''Reilly');
 
 
 LIKE
+
+SELECT Publisher FROM Works WHERE Publisher LIKE "%y";
+
+SELECT Publisher FROM Works WHERE Publisher LIKE "%il%";
+
+
+
+-- CHALLENGE
+
+Write a query that lists all books in the database that have the word "SQL" in their title and that have been published after 2010.
+
+	SELECT * FROM Works WHERE Title LIKE "%SQL%" AND Date>2010;
+
+
 
 
 
 6 OPERATIONS ?
 
 This actually works SELECT 1+2
+
+
+
+
 
 
 
