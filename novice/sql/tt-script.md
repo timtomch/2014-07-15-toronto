@@ -23,4 +23,6 @@ root: ../..
 	</li>
 <li>DISTINCT and ORDER BY</li>
 <li>WHERE clauses. Boolean operators. > AND OR. LIKE and NOT LIKE</li>
+<li>Operations. SELECT 1+2.</li>
+<li>NULL</li>
 </ul>
