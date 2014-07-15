@@ -904,7 +904,7 @@ SELECT rowid, * from Items LIMIT 5;</pre>
 	<TD>On shelf</TD>
 	</TR>
 	<TR><TD>4</TD>
-	<TD>PHP &and; MySQL</TD>
+	<TD>PHP &amp; MySQL</TD>
 	<TD>Sebastopol: O'Reilly</TD>
 	<TD>2013</TD>
 	<TD>708014968732</TD>
@@ -912,7 +912,7 @@ SELECT rowid, * from Items LIMIT 5;</pre>
 	<TD>Missing</TD>
 	</TR>
 	<TR><TD>5</TD>
-	<TD>PHP &and; MySQL</TD>
+	<TD>PHP &amp; MySQL</TD>
 	<TD>Sebastopol: O'Reilly</TD>
 	<TD>2013</TD>
 	<TD>819783404942</TD>
@@ -930,8 +930,9 @@ SELECT rowid, * from Items LIMIT 5;</pre>
 <div>
 <h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li><p>Write a query that lists all radiation readings from the DR-1 site.</p></li>
 <li><p>Write a query that lists all works written by people whose name start with the letter &quot;K&quot;.</p></li>
+<li><p>Write a query that lists all authors that have written at least one book that is currently on loan from the library.</p></li>
+<li><p>To which item does the barcode <code>722040919616</code> refers to, what is the title of this book and who are its authors?</p></li>
 </ol>
 </div>
 
