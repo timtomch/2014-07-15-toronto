@@ -13,7 +13,7 @@ sqlite3 swclib.db
 .schema
 
 
-3 SELECT
+3 SELECT 
 
 
 
