@@ -14,6 +14,9 @@ root: ../..
 </ul>
 </div>
 
+<div>
+WARNING - This chapter hasn't been updated yet and still references another database example.	
+</div>
 
 <div>
 <p>So far we have only looked at how to get information out of a database, both because that is more frequent than adding information, and because most other operations only make sense once queries are understood. If we want to create and modify data, we need to know two other pairs of commands.</p>

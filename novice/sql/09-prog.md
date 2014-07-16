@@ -15,6 +15,10 @@ root: ../..
 </ul>
 </div>
 
+<div>
+WARNING - This chapter hasn't been updated yet and still references another database example.	
+</div>
+
 
 <div>
 <p>To close, let's have a look at how to access a database from a general-purpose programming language like Python. Other languages use almost exactly the same model: library and function names may differ, but the concepts are the same.</p>

@@ -522,7 +522,7 @@ ORDER BY Publisher ASC, Date DESC;</pre>
 <li><p>How many books were published in 2011, and what was their average length?</p></li>
 <li><p>The average of a set of values is the sum of the values divided by the number of values. Does this mean that the <code>avg</code> function returns 2.0 or 3.0 when given the values 1.0, <code>NULL</code>, and 5.0?</p></li>
 <li><p>The function <code>group_concat(field, separator)</code> concatenates all the values in a field using the specified separator character (or ',' if the separator isn't specified). Use this to produce a one-line list of publishers' names, such as:</p>
-<pre><code>O'Reilly, Wiley, Faber &and; Faber, Belknap Press, ...</code></pre>
+<pre><code>O'Reilly, Wiley, Faber &amp; Faber, Belknap Press, ...</code></pre>
 <p>Can you find a way to order the list alphabetically?</p></li>
 </ol>
 </div>

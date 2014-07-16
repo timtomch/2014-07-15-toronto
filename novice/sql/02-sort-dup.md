@@ -340,7 +340,7 @@ SELECT Title, Date, Publisher FROM Works ORDER BY Date DESC, Publisher ASC;</pre
 <div>
 <h4 id="challenges">Challenge</h4>
 <ol style="list-style-type: decimal">
-<li><p>Write a query that displays the Name and Surname of the authors in the <code>Authors</code> table, ordered by (given) Name.</p></li>
+<li><p>Write a query that displays the Personal and Family name of the authors in the <code>Authors</code> table, ordered by Family name.</p></li>
 </ol>
 </div>
 
