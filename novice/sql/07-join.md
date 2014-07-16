@@ -930,7 +930,7 @@ SELECT rowid, * from Items LIMIT 5;</pre>
 <div>
 <h4 id="challenges">Challenges</h4>
 <ol style="list-style-type: decimal">
-<li><p>Write a query that lists all works written by people whose name start with the letter &quot;K&quot;.</p></li>
+<li><p>Write a query that lists all works written by people whose Family name start with the letter &quot;K&quot;.</p></li>
 <li><p>Write a query that lists all authors that have written at least one book that is currently on loan from the library.</p></li>
 <li><p>To which item does the barcode <code>722040919616</code> refers to, what is the title of this book and who are its authors?</p></li>
 </ol>
